@@ -1,0 +1,46 @@
+{
+    "services": [
+        {
+            "type": "app",
+            "data": {
+                "projectName": "bermudi",
+                "serviceName": "siteinspector",
+                "env": "SECRET_KEY_BASE=null\nRAILS_LOG_TO_STDOUT=true\nDATABASE_URL=postgresql://postgres:8243d4e3d61b0f4718aa@siteinspector-db:5432/siteinspector\nREDIS_URL=redis://siteinspector-redis:6379/0\nPORT=808\nSIDEKIQ_CONCURRENCY=10",
+                "source": {
+                    "type": "image",
+                    "image": "siteinspector/siteinspector:latest"
+                },
+                "domains": [
+          {
+            "host": "$(EASYPANEL_DOMAIN)",
+            "port": 808
+          }
+        ],
+        "mounts": [
+          {
+            "type": "volume",
+            "name": "data",
+            "mountPath": "/var/www/html"
+          },
+                  ]
+      }
+    },
+        {
+            "type": "postgres",
+            "data": {
+                "projectName": "bermudi",
+                "serviceName": "siteinspector-db",
+                "password": "8243d4e3d61b0f4718aa",
+                "image": "postgres:12.2"
+            }
+        },
+        {
+            "type": "redis",
+            "data": {
+                "projectName": "bermudi",
+                "serviceName": "siteinspector-redis",
+                "image": "redis:5.0"
+            }
+        }
+    ]
+}
