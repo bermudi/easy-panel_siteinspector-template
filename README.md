@@ -1,0 +1,1 @@
+# easy-panel_siteinspector-template
